@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
 import './App.css';
+import Card from './components/Card/index';
 
 const md5 = require('md5');
 
@@ -13,35 +13,31 @@ const hash = md5(timeStamp + privateKey + publicKey);
 
 class App extends Component {
 
-  componentDidMount(){
-    const result = axios.get(`http://gateway.marvel.com/v1/public/comics?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+  state = {
+    heroes : []
+  }
+
+  async componentDidMount(){
+    const result = await axios.get(`http://gateway.marvel.com/v1/public/characters?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
     .then((res) => {
       return res.data;
     })
     .catch((error) => {
       return error;
     })
-    console.log(result);
-    console.log('TEste');
+    const heroes = result.data.results;
+    this.setState({ heroes });
 }
 
   render() {
+    console.log(this.state.heroes);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+          {
+            this.state.heroes.map((hero) => (
+              <Card heroItem={hero} key={hero.id} />
+            ))
+          }
       </div>
     );
   }

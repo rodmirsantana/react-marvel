@@ -1,0 +1,26 @@
+.App { 
+    display: flex;
+    width: 100%;
+    max-width: 1025px;
+    height: 800px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1 0 375px;
+    justify-content: space-around;
+}
+
+.imagem{
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1 0 375px;
+    justify-content: center;
+}
+
+/* .nome {
+    font-size: 14px;
+    font-style: italic;
+    color:  grey;
+} */
