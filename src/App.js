@@ -12,6 +12,19 @@ const timeStamp = Date.now().toString();
 const hash = md5(timeStamp + privateKey + publicKey);
 
 class App extends Component {
+
+  componentDidMount(){
+    const result = axios.get(`http://gateway.marvel.com/v1/public/comics?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((error) => {
+      return error;
+    })
+    console.log(result);
+    console.log('TEste');
+}
+
   render() {
     return (
       <div className="App">
