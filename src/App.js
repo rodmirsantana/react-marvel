@@ -30,9 +30,11 @@ class App extends Component {
 }
 
   render() {
-    console.log(this.state.heroes);
     return (
       <div className="App">
+        <header className="card-header">
+          <h1>MARVEL SUPERHEROES</h1>
+        </header>
           {
             this.state.heroes.map((hero) => (
               <Card heroItem={hero} key={hero.id} />
